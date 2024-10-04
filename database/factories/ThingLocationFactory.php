@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ThingLocationFactory extends Factory
 {
+
+    protected $model = \App\Models\ThingLocation::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +20,8 @@ class ThingLocationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => 'Ubicacion ' . $this->faker->word,
+            'description' => 'Descripcion ' . $this->faker->sentence(5),
         ];
     }
 }

@@ -17,6 +17,8 @@ class ThingStatusResource extends Resource
 {
     protected static ?string $model = ThingStatus::class;
 
+    protected static ?string $navigationGroup = 'Customize';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

@@ -24,7 +24,7 @@ class ThingResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
 
-    protected static ?string $navigationGroup = 'Things'; 
+    protected static ?string $navigationGroup = 'Things';
 
     public static function form(Form $form): Form
     {
@@ -36,8 +36,8 @@ class ThingResource extends Resource
                 TextInput::make('description')
                     ->required()
                     ->maxLength(150),
-                Select::make('Ubicacion')
-                    ->label('Ubicaion')
+                Select::make('location_id')
+                    ->label('Ubicacion')
                     ->options(ThingLocation::all()->pluck('name', 'id'))
                     ->searchable(),
                 Select::make('thing_type_id')
@@ -62,13 +62,13 @@ class ThingResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('location_id')
+                Tables\Columns\TextColumn::make('location.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('thing_type_id')
+                Tables\Columns\TextColumn::make('type.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status_id')
+                Tables\Columns\TextColumn::make('status.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('icon')

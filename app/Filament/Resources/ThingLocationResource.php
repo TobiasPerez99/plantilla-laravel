@@ -19,6 +19,8 @@ class ThingLocationResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Customize';
+
     public static function form(Form $form): Form
     {
         return $form

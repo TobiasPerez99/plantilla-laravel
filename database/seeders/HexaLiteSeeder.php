@@ -2,17 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\ThingLocation;
-use Illuminate\Database\Seeder;
+use App\Models\HexaLite;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
-class ThingLocationSeeder extends Seeder
+class HexaLiteSeeder extends Seeder
 {
+
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        ThingLocation::factory(5)->create();
+        HexaLite::factory(1)->create();
     }
 }
