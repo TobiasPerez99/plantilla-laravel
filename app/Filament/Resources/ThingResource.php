@@ -2,43 +2,53 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ThingResource\Pages;
-use App\Filament\Resources\ThingResource\RelationManagers;
-use App\Models\Thing;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Thing;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\ThingLocation;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ThingResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ThingResource\RelationManagers;
+use App\Models\ThingStatus;
+use App\Models\ThingType;
 
 class ThingResource extends Resource
 {
     protected static ?string $model = Thing::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-light-bulb';
+
+    protected static ?string $navigationGroup = 'Things'; 
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->required()
                     ->maxLength(100),
-                Forms\Components\TextInput::make('description')
+                TextInput::make('description')
                     ->required()
                     ->maxLength(150),
-                Forms\Components\TextInput::make('location_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('thing_type_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('status_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('icon')
+                Select::make('Ubicacion')
+                    ->label('Ubicaion')
+                    ->options(ThingLocation::all()->pluck('name', 'id'))
+                    ->searchable(),
+                Select::make('thing_type_id')
+                    ->label('Tipo de Cosa')
+                    ->options(ThingType::all()->pluck('name', 'id'))
+                    ->searchable(),
+                Select::make('status_id')
+                    ->label('Estado')
+                    ->options(ThingStatus::all()->pluck('name', 'id'))
+                    ->searchable(),
+                TextInput::make('icon')
                     ->required()
                     ->maxLength(255),
             ]);
