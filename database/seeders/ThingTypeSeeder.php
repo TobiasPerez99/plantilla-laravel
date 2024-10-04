@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ThingType;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ThingTypeSeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class ThingTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        ThingType::factory(5)->create();
     }
 }

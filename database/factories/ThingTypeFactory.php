@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ThingTypeFactory extends Factory
 {
+    protected $model = \App\Models\ThingType::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,7 +19,9 @@ class ThingTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => 'Tipo ' . $this->faker->word,
+            'description' => 'Descripcion ' . $this->faker->sentence(5),
+            'default_icon' => 'fas fa-cube',
         ];
     }
 }
