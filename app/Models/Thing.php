@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Thing extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'Thing';
+    protected $table = 'thing';
 
     public function location()
     {
@@ -26,24 +27,31 @@ class Thing extends Model
         return $this->belongsTo(ThingStatus::class, 'status_id', 'id');
     }
 
-
-    public function scopeActive($query)
+    public function devices()
     {
-        return $query->where('active', 1);
+        return $this->belongsToMany(Device::class, 'things_devices', 'thing_id', 'device_id');
     }
 
-    public function scopeInactive($query)
+    // un thing puede tener solo un hub
+    public function hub()
     {
-        return $query->where('active', 0);
+        return $this->belongsTo(Hub::class, 'hub_id', 'id');
     }
 
-    public function scopeOfUser($query, $user)
+    public function hubs()
     {
-        return $query->where('user_id', $user->id);
+        return $this->belongsToMany(Hub::class, 'thing_hub', 'thing_id', 'hub_id');
     }
 
-    public function scopeOfLocation($query, $location)
+
+    /* pivot table */
+    public function users()
     {
-        return $query->where('location_id', $location->id);
+        return $this->belongsToMany(ThingStatus::class, 'thing_status', 'thing_id', '')
+            ->withPivot('active')
+            ->withTimestamps();
     }
+
+
+
 }

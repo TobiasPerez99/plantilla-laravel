@@ -48,3 +48,8 @@ php artisan migrate
 php artisan hexa:account --create
 ```
 
+## Relations
+
+### Thing
+
+Una cosa puede tener muchos status.

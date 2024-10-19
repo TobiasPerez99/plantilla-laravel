@@ -87,6 +87,7 @@ class ThingResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -94,6 +95,7 @@ class ThingResource extends Resource
                 ]),
             ]);
     }
+
 
     public static function getRelations(): array
     {

@@ -12,4 +12,9 @@ class ThingStatus extends Model
     protected $fillable = [];
 
     protected $table = 'thing_status';
+
+    public function hasManyThings()
+    {
+        return $this->hasMany(Thing::class, 'status_id', 'id');
+    }
 }

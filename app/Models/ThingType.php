@@ -12,4 +12,10 @@ class ThingType extends Model
     protected $fillable = [];
 
     protected $table = 'thing_type';
+
+
+    public function hasManyThings()
+    {
+        return $this->hasMany(Thing::class, 'thing_type_id', 'id');
+    }
 }
