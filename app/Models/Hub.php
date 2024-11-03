@@ -15,12 +15,11 @@ class Hub extends Model
     /* Un Hub puede tener muchos Thing */
     public function devices()
     {
-        return $this->hasMany(Thing::class , 'hub_id', 'id');
+        return $this->hasMany(Thing::class, 'hub_id', 'id');
     }
 
     public function things()
     {
-        return $this->belongsToMany(Thing::class, 'hub_thing', 'hub_id', 'thing_id');
+        return $this->belongsToMany(Thing::class, 'thing_hub', 'hub_id', 'thing_id');
     }
-
 }

@@ -27,22 +27,21 @@ class Thing extends Model
         return $this->belongsTo(ThingStatus::class, 'status_id', 'id');
     }
 
-    public function devices()
+    // public function devices()
+    // {
+    //     return $this->belongsToMany(Device::class, 'things_devices', 'thing_id', 'device_id');
+    // }
+
+    public function device()
     {
-        return $this->belongsToMany(Device::class, 'things_devices', 'thing_id', 'device_id');
+        return $this->belongsToMany(Device::class, 'device_hub', 'thing_id', 'device_id');
     }
 
     // un thing puede tener solo un hub
-    public function hub()
-    {
-        return $this->belongsTo(Hub::class, 'hub_id', 'id');
-    }
-
-    public function hubs()
-    {
-        return $this->belongsToMany(Hub::class, 'thing_hub', 'thing_id', 'hub_id');
-    }
-
+    // public function hub()
+    // {
+    //     return $this->belongsTo(Hub::class, 'hub_id', 'id');
+    // }
 
     /* pivot table */
     public function users()
@@ -52,6 +51,8 @@ class Thing extends Model
             ->withTimestamps();
     }
 
-
-
+    public function hubs()
+    {
+        return $this->belongsToMany(Hub::class, 'thing_hub', 'thing_id', 'hub_id');
+    }
 }

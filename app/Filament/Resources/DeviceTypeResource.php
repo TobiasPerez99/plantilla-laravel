@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\DeviceTypeResource\Pages;
-use App\Filament\Resources\DeviceTypeResource\RelationManagers;
-use App\Models\DeviceType;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\DeviceType;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\DeviceTypeResource\Pages;
+use App\Filament\Resources\DeviceTypeResource\RelationManagers;
 
 class DeviceTypeResource extends Resource
 {
@@ -25,7 +27,12 @@ class DeviceTypeResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')
+                    ->required()
+                    ->maxLength(100),
+                TextInput::make('description')
+                    ->required()
+                    ->maxLength(150),
             ]);
     }
 
@@ -33,7 +40,8 @@ class DeviceTypeResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name'),
+                TextColumn::make('description'),
             ])
             ->filters([
                 //

@@ -13,6 +13,17 @@ class ThingTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        ThingType::factory(5)->create();
+        $types = [
+            ['name' => 'Light Smart', 'description' => 'Light Smart'],
+            ['name' => 'Door Lock', 'description' => 'Door Lock'],
+            ['name' => 'Camera Smart', 'description' => 'Camera Smart'],
+            ['name' => 'Thermostat Smart', 'description' => 'Thermostat Smart'],
+            ['name' => 'Speaker Smart', 'description' => 'Speaker Smart'],
+            ['name' => 'Movement Sensor', 'description' => 'Movement Sensor']
+        ];
+
+        foreach ($types as $type) {
+            ThingType::create($type);
+        }
     }
 }

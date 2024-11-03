@@ -9,7 +9,7 @@ class ThingType extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = ['name' , 'description'];
 
     protected $table = 'thing_type';
 

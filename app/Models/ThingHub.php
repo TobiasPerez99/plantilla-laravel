@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class ThingHub extends Pivot
 {
-    use HasFactory;
-
-    protected $table = 'thing_hub';
-
-    
-
+    public static function booted()
+    {
+        static::creating(function ($record) {
+            dd($record);
+        });
+    }
 }

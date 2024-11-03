@@ -13,6 +13,19 @@ class ThingStatusSeeder extends Seeder
      */
     public function run(): void
     {
-        ThingStatus::factory(5)->create();
+        // ThingStatus::factory(5)->create();
+
+
+        /* Create bulk data */
+        $statuses = [
+            ['name' => 'Online', 'description' => 'Online'],
+            ['name' => 'Offline', 'description' => 'Offline'],
+            ['name' => 'Maintenance', 'description' => 'Maintenance'],
+            ['name' => 'Error', 'description' => 'Error'],
+        ];
+
+        foreach ($statuses as $status) {
+            ThingStatus::create($status);
+        }
     }
 }

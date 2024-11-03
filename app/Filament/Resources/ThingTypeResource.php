@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ThingTypeResource\Pages;
-use App\Filament\Resources\ThingTypeResource\RelationManagers;
-use App\Models\ThingType;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\ThingType;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ThingTypeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ThingTypeResource\RelationManagers;
 
 class ThingTypeResource extends Resource
 {
@@ -19,14 +21,19 @@ class ThingTypeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Customize'; 
+    protected static ?string $navigationGroup = 'Customize';
 
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                
+                TextInput::make('name')
+                    ->required()
+                    ->maxLength(100),
+                TextInput::make('description')
+                    ->required()
+                    ->maxLength(150),
             ]);
     }
 
@@ -34,7 +41,8 @@ class ThingTypeResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name'),
+                TextColumn::make('description'),
             ])
             ->filters([
                 //

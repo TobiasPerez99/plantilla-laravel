@@ -9,7 +9,9 @@ class DeviceType extends Model
 {
     use HasFactory;
 
-    protected $table = 'device_types';
+    protected $table = 'device_type';
+
+    protected $fillable = ['name', 'description']; 
 
     public function hasManyDevices()
     {

@@ -11,7 +11,8 @@ class ThingLocation extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'name',
+        'description'
     ];
 
     protected $table = 'thing_location';
@@ -20,5 +21,4 @@ class ThingLocation extends Model
     {
         return $this->hasMany(Thing::class, 'location_id');
     }
-
 }

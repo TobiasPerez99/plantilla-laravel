@@ -38,7 +38,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->ipAddress('ipv4_address');
-            $table->macAddress('mac')->nullable();
+            $table->macAddress('mac_address')->nullable();
             $table->string('mqtt_address', 100)->nullable();
             $table->string('mqtt_port', 100)->nullable();
             $table->ipAddress('ipv4_external_address')->nullable();
@@ -88,11 +88,11 @@ return new class extends Migration
         });
 
         // Añadir las claves foráneas después de que todas las tablas estén creadas
-        Schema::table('thing', function (Blueprint $table) {
-            $table->foreign('location_id')->references('id')->on('thing_location');
-            $table->foreign('thing_type_id')->references('id')->on('thing_type');
-            $table->foreign('status_id')->references('id')->on('thing_status');
-        });
+        // Schema::table('thing', function (Blueprint $table) {
+        //     $table->foreign('location_id')->references('id')->on('thing_location');
+        //     $table->foreign('thing_type_id')->references('id')->on('thing_type');
+        //     $table->foreign('status_id')->references('id')->on('thing_status');
+        // });
 
         Schema::table('thing_device', function (Blueprint $table) {
             $table->foreign('thing_id')->references('id')->on('thing')->onDelete('cascade');
